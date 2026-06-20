@@ -17,8 +17,9 @@
             background-color: #121212;
             color: #ffffff;
             line-height: 1.6;
-            /* Bottom bar ke liye extra space taaki content na chhupe */
-            padding-bottom: 70px; 
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Footer ko bottom mein rakhne ke liye */
         }
 
         /* Navbar Layout with Circle Logo */
@@ -34,19 +35,17 @@
             z-index: 1000;
         }
 
-        /* Logo Container - Text aur Image ko align karne ke liye */
         .logo-container {
             display: flex;
             align-items: center;
-            gap: 12px; /* Image aur text ke beech ka gap */
+            gap: 12px;
             text-decoration: none;
         }
 
-        /* Circle Logo CSS */
         .logo-img {
             width: 45px;
             height: 45px;
-            border-radius: 50%; /* Circle shape ke liye */
+            border-radius: 50%;
             object-fit: cover;
             border: 2px solid #00ffcc;
         }
@@ -97,6 +96,11 @@
             transition: all 0.3s ease;
         }
 
+        /* Main Content area flex-grow se bachi hui jagah lega */
+        main {
+            flex-grow: 1; 
+        }
+
         /* Hero / Content Section */
         .hero-section {
             padding: 40px 20px;
@@ -141,32 +145,81 @@
             flex-shrink: 0;
         }
 
-        /* Bottom Bar (Hidden on Desktop by default) */
-        .bottom-bar {
-            display: none;
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
+        /* --- NEW PROFESSIONAL FOOTER --- */
+        .footer {
             background-color: #1a1a1a;
-            border-top: 1px solid #333;
-            z-index: 1000;
-            padding: 10px 0;
+            border-top: 2px solid #282828;
+            padding: 40px 20px 15px;
+            margin-top: 40px;
         }
 
-        .bottom-bar a {
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .footer-col h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        /* Heading ke neeche ek choti neon line */
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background-color: #00ffcc;
+        }
+
+        .footer-col p {
+            color: #aaaaaa;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
             color: #aaaaaa;
             text-decoration: none;
             font-size: 14px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 4px;
-            transition: color 0.3s ease;
+            transition: color 0.3s;
         }
 
-        .bottom-bar a:hover, .bottom-bar a.active {
+        .footer-col ul li a:hover {
             color: #00ffcc;
+            padding-left: 5px; /* Hover par thoda aage shift hoga */
+            transition: all 0.3s ease;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+            color: #777777;
+            font-size: 13px;
         }
 
         /* Responsive Mobile Layout */
@@ -197,24 +250,19 @@
             }
 
             .slider-wrapper {
-                height: 200px; /* Mobile par slider thoda chota dikhega */
+                height: 200px; 
             }
-
-            /* Show Bottom Bar on Mobile */
-            .bottom-bar {
-                display: flex;
-                justify-content: space-around;
+            
+            .footer-container {
+                flex-direction: column;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation Bar -->
     <nav class="navbar">
-        <!-- Logo Section -->
         <a href="index.html" class="logo-container">
-            <!-- Yahan logo.png ko apni logo file ke naam se badlein -->
             <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=DG'">
             <span class="logo-text">DANTANIS GROUP</span>
         </a>
@@ -225,7 +273,6 @@
             <span></span>
         </button>
         
-        <!-- Menu Items (Ab alag pages ke links ke sath) -->
         <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -234,31 +281,51 @@
         </ul>
     </nav>
 
-    <!-- Main Content & Slider -->
-    <main class="hero-section">
-        <h1>Welcome to <span>DANTANIS GROUP</span></h1>
-        <p>A professional layout customized with gradients, sliders, and navigation.</p>
+    <main>
+        <section class="hero-section">
+            <h1>Welcome to <span>DANTANIS GROUP</span></h1>
+            <p>A professional layout customized with gradients, sliders, and a modern footer.</p>
 
-        <!-- Auto Slide Box -->
-        <div class="slider-wrapper">
-            <div class="slider-track" id="slider-track">
-                <!-- Testing ke liye online images dali hain, aap inhe apni .jpg/.png files se badal sakte hain -->
-                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&q=80" alt="Slide 1">
-                <img src="https://images.unsplash.com/photo-1470770841072-f978ccc4f0e8?w=800&q=80" alt="Slide 2">
-                <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80" alt="Slide 3">
+            <div class="slider-wrapper">
+                <div class="slider-track" id="slider-track">
+                    <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&q=80" alt="Slide 1">
+                    <img src="https://images.unsplash.com/photo-1470770841072-f978ccc4f0e8?w=800&q=80" alt="Slide 2">
+                    <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80" alt="Slide 3">
+                </div>
             </div>
-        </div>
+        </section>
     </main>
 
-    <!-- Bottom Mobile Bar -->
-    <div class="bottom-bar">
-        <a href="index.html" class="active">🏠<br>Home</a>
-        <a href="about.html">ℹ️<br>About</a>
-        <a href="services.html">⚙️<br>Services</a>
-        <a href="contact.html">📞<br>Contact</a>
-    </div>
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>About DANTANIS GROUP</h3>
+                <p>We are dedicated to providing the best digital solutions, customized designs, and innovative platforms for our users.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
+                </ul>
+            </div>
 
-    <!-- JavaScript Logic -->
+            <div class="footer-col">
+                <h3>Contact Info</h3>
+                <p>📧 Email: info@dantanisgroup.online</p>
+                <p>📞 Phone: +91 12345 67890</p>
+                <p>📍 Location: India</p>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            &copy; 2026 DANTANIS GROUP. All Rights Reserved.
+        </div>
+    </footer>
+
     <script>
         // Hamburger Menu Logic
         const menuToggle = document.getElementById('menu-toggle');
@@ -268,7 +335,7 @@
             navList.classList.toggle('active');
         });
 
-        // Auto-Slide Image Logic
+        // Auto-Slide Logic
         const track = document.getElementById('slider-track');
         const slides = track.querySelectorAll('img');
         let slideIndex = 0;
@@ -277,13 +344,11 @@
         function autoSlide() {
             slideIndex++;
             if (slideIndex >= totalSlides) {
-                slideIndex = 0; // Wapas pehli image par
+                slideIndex = 0; 
             }
-            // Image ki width ke hisaab se slide karna (100%, 200%, etc.)
             track.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
 
-        // Har 3 second (3000ms) mein slide change hogi
         setInterval(autoSlide, 3000);
     </script>
 </body>
