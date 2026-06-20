@@ -17,9 +17,11 @@
             background-color: #121212;
             color: #ffffff;
             line-height: 1.6;
+            /* Bottom bar ke liye extra space taaki content na chhupe */
+            padding-bottom: 70px; 
         }
 
-        /* Navbar Layout */
+        /* Navbar Layout with Circle Logo */
         .navbar {
             background-color: #1a1a1a;
             padding: 15px 24px;
@@ -27,18 +29,36 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #282828;
-            position: relative;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
-        .logo {
+        /* Logo Container - Text aur Image ko align karne ke liye */
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px; /* Image aur text ke beech ka gap */
+            text-decoration: none;
+        }
+
+        /* Circle Logo CSS */
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%; /* Circle shape ke liye */
+            object-fit: cover;
+            border: 2px solid #00ffcc;
+        }
+
+        .logo-text {
             font-size: 20px;
             font-weight: bold;
             color: #00ffcc;
-            text-decoration: none;
             letter-spacing: 1px;
         }
 
-        /* Desktop Menu (Default Full View) */
+        /* Desktop Menu */
         .nav-links {
             list-style: none;
             display: flex;
@@ -57,7 +77,7 @@
             color: #00ffcc;
         }
 
-        /* Hamburger Menu Icon (Hidden on Desktop) */
+        /* Hamburger Menu Icon */
         .hamburger {
             display: none;
             flex-direction: column;
@@ -79,15 +99,13 @@
 
         /* Hero / Content Section */
         .hero-section {
-            padding: 100px 20px;
+            padding: 40px 20px;
             text-align: center;
-            background: linear-gradient(135deg, #1e1e1e 0%, #121212 100%);
         }
 
         .hero-section h1 {
-            font-size: 2.8rem;
-            margin-bottom: 15px;
-            font-weight: 700;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
         }
 
         .hero-section h1 span {
@@ -97,109 +115,176 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-section p {
-            font-size: 1.2rem;
+        /* Auto-Slide Image Box CSS */
+        .slider-wrapper {
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            margin: 30px auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+
+        .slider-track {
+            display: flex;
+            width: 100%;
+            height: 100%;
+            transition: transform 0.8s ease-in-out;
+        }
+
+        .slider-track img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
+
+        /* Bottom Bar (Hidden on Desktop by default) */
+        .bottom-bar {
+            display: none;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background-color: #1a1a1a;
+            border-top: 1px solid #333;
+            z-index: 1000;
+            padding: 10px 0;
+        }
+
+        .bottom-bar a {
             color: #aaaaaa;
-            margin-bottom: 35px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-btn {
-            background: linear-gradient(45deg, #00ffcc, #0099ff);
-            color: #121212;
-            padding: 12px 32px;
             text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 16px;
-            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
+            font-size: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            transition: color 0.3s ease;
         }
 
-        .cta-btn:hover {
-            transform: scale(1.05);
+        .bottom-bar a:hover, .bottom-bar a.active {
+            color: #00ffcc;
         }
 
-        /* Responsive Breakpoint (Mobile Screen Layout) */
+        /* Responsive Mobile Layout */
         @media (max-width: 768px) {
             .hamburger {
-                display: flex; /* Show 3 lines on mobile */
+                display: flex; 
             }
 
             .nav-links {
-                display: none; /* Hide menu items by default on mobile */
+                display: none; 
                 flex-direction: column;
                 width: 100%;
                 position: absolute;
-                top: 100%; /* Navbar ke thik neeche khulega */
+                top: 100%; 
                 left: 0;
                 background-color: #1a1a1a;
-                padding: 20px 0;
+                padding: 10px 0;
                 border-bottom: 2px solid #282828;
-                box-shadow: 0 8px 16px rgba(0,0,0,0.5);
-                z-index: 1000;
             }
 
-            /* Jab JS se 'active' class add hogi tab menu dikhega */
             .nav-links.active {
                 display: flex;
             }
 
             .nav-links li {
                 text-align: center;
-                margin: 12px 0;
+                margin: 15px 0;
             }
-            
-            .hero-section h1 {
-                font-size: 2rem;
+
+            .slider-wrapper {
+                height: 200px; /* Mobile par slider thoda chota dikhega */
+            }
+
+            /* Show Bottom Bar on Mobile */
+            .bottom-bar {
+                display: flex;
+                justify-content: space-around;
             }
         }
     </style>
 </head>
 <body>
 
+    <!-- Navigation Bar -->
     <nav class="navbar">
-        <a href="#" class="logo">DANTANIS GROUP</a>
+        <!-- Logo Section -->
+        <a href="index.html" class="logo-container">
+            <!-- Yahan logo.png ko apni logo file ke naam se badlein -->
+            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=DG'">
+            <span class="logo-text">DANTANIS GROUP</span>
+        </a>
         
-        <button class="hamburger" id="menu-toggle" aria-label="Toggle navigation">
+        <button class="hamburger" id="menu-toggle">
             <span></span>
             <span></span>
             <span></span>
         </button>
         
+        <!-- Menu Items (Ab alag pages ke links ke sath) -->
         <ul class="nav-links" id="nav-list">
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About Us</a></li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="contact.html">Contact</a></li>
         </ul>
     </nav>
 
+    <!-- Main Content & Slider -->
     <main class="hero-section">
         <h1>Welcome to <span>DANTANIS GROUP</span></h1>
-        <p>This is a responsive testing website built with clean dark mode code layout, customized gradients, and smooth components.</p>
-        <a href="#" class="cta-btn">Explore Platform</a>
+        <p>A professional layout customized with gradients, sliders, and navigation.</p>
+
+        <!-- Auto Slide Box -->
+        <div class="slider-wrapper">
+            <div class="slider-track" id="slider-track">
+                <!-- Testing ke liye online images dali hain, aap inhe apni .jpg/.png files se badal sakte hain -->
+                <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&q=80" alt="Slide 1">
+                <img src="https://images.unsplash.com/photo-1470770841072-f978ccc4f0e8?w=800&q=80" alt="Slide 2">
+                <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80" alt="Slide 3">
+            </div>
+        </div>
     </main>
 
+    <!-- Bottom Mobile Bar -->
+    <div class="bottom-bar">
+        <a href="index.html" class="active">🏠<br>Home</a>
+        <a href="about.html">ℹ️<br>About</a>
+        <a href="services.html">⚙️<br>Services</a>
+        <a href="contact.html">📞<br>Contact</a>
+    </div>
+
+    <!-- JavaScript Logic -->
     <script>
+        // Hamburger Menu Logic
         const menuToggle = document.getElementById('menu-toggle');
         const navList = document.getElementById('nav-list');
 
-        // 3-line menu par click karne par menu ko toggle (show/hide) karne ka logic
         menuToggle.addEventListener('click', () => {
             navList.classList.toggle('active');
         });
 
-        // Agar mobile menu khula ho aur koi link par click kare, toh menu automatically band ho jaye
-        const links = document.querySelectorAll('.nav-links a');
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                navList.classList.remove('active');
-            });
-        });
+        // Auto-Slide Image Logic
+        const track = document.getElementById('slider-track');
+        const slides = track.querySelectorAll('img');
+        let slideIndex = 0;
+        const totalSlides = slides.length;
+
+        function autoSlide() {
+            slideIndex++;
+            if (slideIndex >= totalSlides) {
+                slideIndex = 0; // Wapas pehli image par
+            }
+            // Image ki width ke hisaab se slide karna (100%, 200%, etc.)
+            track.style.transform = `translateX(-${slideIndex * 100}%)`;
+        }
+
+        // Har 3 second (3000ms) mein slide change hogi
+        setInterval(autoSlide, 3000);
     </script>
 </body>
 </html>
