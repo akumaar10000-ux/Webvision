@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome DANTANIS GROUP</title>
+    <style>
+        /* Base Styles & Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+        }
+
+        /* Navbar Layout */
+        .navbar {
+            background-color: #1a1a1a;
+            padding: 15px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #282828;
+            position: relative;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00ffcc;
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+
+        /* Desktop Menu (Default Full View) */
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav-links a {
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #00ffcc;
+        }
+
+        /* Hamburger Menu Icon (Hidden on Desktop) */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            background: none;
+            border: none;
+            padding: 5px;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background-color: #ffffff;
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+
+        /* Hero / Content Section */
+        .hero-section {
+            padding: 100px 20px;
+            text-align: center;
+            background: linear-gradient(135deg, #1e1e1e 0%, #121212 100%);
+        }
+
+        .hero-section h1 {
+            font-size: 2.8rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .hero-section h1 span {
+            color: #00ffcc;
+            background: linear-gradient(45deg, #00ffcc, #0099ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            color: #aaaaaa;
+            margin-bottom: 35px;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, #00ffcc, #0099ff);
+            color: #121212;
+            padding: 12px 32px;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0, 255, 204, 0.2);
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Responsive Breakpoint (Mobile Screen Layout) */
+        @media (max-width: 768px) {
+            .hamburger {
+                display: flex; /* Show 3 lines on mobile */
+            }
+
+            .nav-links {
+                display: none; /* Hide menu items by default on mobile */
+                flex-direction: column;
+                width: 100%;
+                position: absolute;
+                top: 100%; /* Navbar ke thik neeche khulega */
+                left: 0;
+                background-color: #1a1a1a;
+                padding: 20px 0;
+                border-bottom: 2px solid #282828;
+                box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+                z-index: 1000;
+            }
+
+            /* Jab JS se 'active' class add hogi tab menu dikhega */
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                text-align: center;
+                margin: 12px 0;
+            }
+            
+            .hero-section h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="logo">DANTANIS GROUP</a>
+        
+        <button class="hamburger" id="menu-toggle" aria-label="Toggle navigation">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        
+        <ul class="nav-links" id="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <main class="hero-section">
+        <h1>Welcome to <span>DANTANIS GROUP</span></h1>
+        <p>This is a responsive testing website built with clean dark mode code layout, customized gradients, and smooth components.</p>
+        <a href="#" class="cta-btn">Explore Platform</a>
+    </main>
+
+    <script>
+        const menuToggle = document.getElementById('menu-toggle');
+        const navList = document.getElementById('nav-list');
+
+        // 3-line menu par click karne par menu ko toggle (show/hide) karne ka logic
+        menuToggle.addEventListener('click', () => {
+            navList.classList.toggle('active');
+        });
+
+        // Agar mobile menu khula ho aur koi link par click kare, toh menu automatically band ho jaye
+        const links = document.querySelectorAll('.nav-links a');
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navList.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>
