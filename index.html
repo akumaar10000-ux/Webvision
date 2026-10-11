@@ -3,7 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LAYMEX</title>
+
+    <title>Laymex | Official Website</title>
+
+    <meta name="description" content="Welcome to Laymex, your destination for innovative products, thoughtful designs, and digital experiences.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://laymex.com/">
+
+    <meta property="og:site_name" content="Laymex">
+    <meta property="og:title" content="Laymex | Official Website">
+    <meta property="og:description" content="Discover Laymex and explore our website.">
+    <meta property="og:url" content="https://laymex.com/">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://laymex.com/logo.png">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Laymex | Official Website">
+    <meta name="twitter:description" content="Discover Laymex and explore our website.">
+    <meta name="twitter:image" content="https://laymex.com/logo.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "Laymex",
+        "alternateName": "Laymex Official",
+        "url": "https://laymex.com/"
+    }
+    </script>
+
     <style>
         /* Base Styles & Reset */
         * {
@@ -19,7 +47,7 @@
             line-height: 1.6;
             display: flex;
             flex-direction: column;
-            min-height: 100vh; /* Footer ko bottom mein rakhne ke liye */
+            min-height: 100vh;
         }
 
         /* Navbar Layout with Circle Logo */
@@ -96,9 +124,8 @@
             transition: all 0.3s ease;
         }
 
-        /* Main Content area flex-grow se bachi hui jagah lega */
         main {
-            flex-grow: 1; 
+            flex-grow: 1;
         }
 
         /* Hero / Content Section */
@@ -145,7 +172,7 @@
             flex-shrink: 0;
         }
 
-        /* --- NEW PROFESSIONAL FOOTER --- */
+        /* Professional Footer */
         .footer {
             background-color: #1a1a1a;
             border-top: 2px solid #282828;
@@ -164,8 +191,7 @@
 
         .footer-col {
             flex: 1;
-            /* Update: Min-width thodi kam ki hai taaki 4 columns easily fit ho jayein */
-            min-width: 200px; 
+            min-width: 200px;
         }
 
         .footer-col h3 {
@@ -176,7 +202,6 @@
             padding-bottom: 8px;
         }
 
-        /* Heading ke neeche ek choti neon line */
         .footer-col h3::after {
             content: '';
             position: absolute;
@@ -210,7 +235,7 @@
 
         .footer-col ul li a:hover {
             color: #00ffcc;
-            padding-left: 5px; /* Hover par thoda aage shift hoga */
+            padding-left: 5px;
             transition: all 0.3s ease;
         }
 
@@ -226,15 +251,15 @@
         /* Responsive Mobile Layout */
         @media (max-width: 768px) {
             .hamburger {
-                display: flex; 
+                display: flex;
             }
 
             .nav-links {
-                display: none; 
+                display: none;
                 flex-direction: column;
                 width: 100%;
                 position: absolute;
-                top: 100%; 
+                top: 100%;
                 left: 0;
                 background-color: #1a1a1a;
                 padding: 10px 0;
@@ -251,29 +276,37 @@
             }
 
             .slider-wrapper {
-                height: 200px; 
+                height: 200px;
             }
-            
+
             .footer-container {
                 flex-direction: column;
             }
         }
     </style>
 </head>
+
 <body>
 
     <nav class="navbar">
         <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=DG'">
-            <span class="logo-text">DANTANIS GROUP</span>
+            <img src="logo.png"
+                 alt="Laymex Logo"
+                 class="logo-img"
+                 onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=L'">
+
+            <span class="logo-text">LAYMEX</span>
         </a>
-        
-        <button class="hamburger" id="menu-toggle">
+
+        <button class="hamburger"
+                id="menu-toggle"
+                aria-label="Toggle navigation"
+                aria-expanded="false">
             <span></span>
             <span></span>
             <span></span>
         </button>
-        
+
         <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
@@ -284,14 +317,22 @@
 
     <main>
         <section class="hero-section">
-            <h1>Welcome to <span>DANTANIS GROUP</span></h1>
-            <p>A professional layout customized with gradients, sliders, and a modern footer.</p>
+            <h1>Welcome to <span>LAYMEX</span></h1>
+
+            <p>
+                Discover Laymex and explore our website.
+            </p>
 
             <div class="slider-wrapper">
                 <div class="slider-track" id="slider-track">
-                    <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&q=80" alt="Slide 1">
-                    <img src="https://images.unsplash.com/photo-1470770841072-f978ccc4f0e8?w=800&q=80" alt="Slide 2">
-                    <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80" alt="Slide 3">
+                    <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&q=80"
+                         alt="Beautiful landscape - Slide 1">
+
+                    <img src="https://images.unsplash.com/photo-1470770841072-f978ccc4f0e8?w=800&q=80"
+                         alt="Mountain landscape - Slide 2">
+
+                    <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80"
+                         alt="Nature landscape - Slide 3">
                 </div>
             </div>
         </section>
@@ -299,11 +340,15 @@
 
     <footer class="footer">
         <div class="footer-container">
+
             <div class="footer-col">
-                <h3>About DANTANIS GROUP</h3>
-                <p>We are dedicated to providing the best digital solutions, customized designs, and innovative platforms for our users.</p>
+                <h3>About Laymex</h3>
+                <p>
+                    Welcome to Laymex. Explore our website to learn more
+                    about our products, services, and digital experiences.
+                </p>
             </div>
-            
+
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul>
@@ -314,11 +359,10 @@
                 </ul>
             </div>
 
-            <!-- NEW: Legal & Policies Column -->
             <div class="footer-col">
-                <h3>Legal & Policies</h3>
+                <h3>Legal &amp; Policies</h3>
                 <ul>
-                    <li><a href="terms.html">Terms & Conditions</a></li>
+                    <li><a href="terms.html">Terms &amp; Conditions</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                     <li><a href="refund.html">Refund Policy</a></li>
                     <li><a href="return.html">Return Policy</a></li>
@@ -332,10 +376,11 @@
                 <p>📞 Phone: +91 12345 67890</p>
                 <p>📍 Location: India</p>
             </div>
+
         </div>
-        
+
         <div class="footer-bottom">
-            &copy; 2026 DANTANIS GROUP. All Rights Reserved.
+            &copy; 2026 Laymex. All Rights Reserved.
         </div>
     </footer>
 
@@ -344,8 +389,9 @@
         const menuToggle = document.getElementById('menu-toggle');
         const navList = document.getElementById('nav-list');
 
-        menuToggle.addEventListener('click', () => {
-            navList.classList.toggle('active');
+        menuToggle.addEventListener('click', function() {
+            const isExpanded = navList.classList.toggle('active');
+            menuToggle.setAttribute('aria-expanded', isExpanded);
         });
 
         // Auto-Slide Logic
@@ -356,13 +402,18 @@
 
         function autoSlide() {
             slideIndex++;
+
             if (slideIndex >= totalSlides) {
-                slideIndex = 0; 
+                slideIndex = 0;
             }
+
             track.style.transform = `translateX(-${slideIndex * 100}%)`;
         }
 
-        setInterval(autoSlide, 3000);
+        if (totalSlides > 1) {
+            setInterval(autoSlide, 3000);
+        }
     </script>
+
 </body>
 </html>
