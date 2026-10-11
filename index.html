@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,22 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Laymex | Official Website</title>
-
-    <meta name="description" content="Welcome to Laymex, your destination for innovative products, thoughtful designs, and digital experiences.">
+    <meta name="description" content="Welcome to Laymex. Explore our website to learn more about our products, services, and digital experiences.">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://laymex.com/">
 
-    <meta property="og:site_name" content="Laymex">
     <meta property="og:title" content="Laymex | Official Website">
     <meta property="og:description" content="Discover Laymex and explore our website.">
     <meta property="og:url" content="https://laymex.com/">
     <meta property="og:type" content="website">
-    <meta property="og:image" content="https://laymex.com/logo.png">
-
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Laymex | Official Website">
-    <meta name="twitter:description" content="Discover Laymex and explore our website.">
-    <meta name="twitter:image" content="https://laymex.com/logo.png">
 
     <script type="application/ld+json">
     {
@@ -33,254 +27,772 @@
     </script>
 
     <style>
-        /* Base Styles & Reset */
+        :root {
+            --bg: #121212;
+            --panel: #1a1a1a;
+            --panel-light: #202020;
+            --neon: #00ffcc;
+            --text: #ffffff;
+            --muted: #aaaaaa;
+            --border: #303030;
+            --drawer-duration: 420ms;
+        }
+
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
         }
 
         body {
-            background-color: #121212;
-            color: #ffffff;
-            line-height: 1.6;
-            display: flex;
-            flex-direction: column;
             min-height: 100vh;
+            background: var(--bg);
+            color: var(--text);
+            font-family: "Segoe UI", Tahoma, Arial, sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Navbar Layout with Circle Logo */
+        body.drawer-open {
+            overflow: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font: inherit;
+        }
+
+        /* ================= HEADER ================= */
+
         .navbar {
-            background-color: #1a1a1a;
-            padding: 15px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #282828;
             position: sticky;
             top: 0;
             z-index: 1000;
-        }
-
-        .logo-container {
+            min-height: 76px;
+            padding: 14px 6%;
             display: flex;
             align-items: center;
-            gap: 12px;
-            text-decoration: none;
+            justify-content: space-between;
+            gap: 20px;
+            background: rgba(26, 26, 26, 0.96);
+            border-bottom: 1px solid var(--border);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
         }
 
-        .logo-img {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 2px solid #00ffcc;
+        .logo {
+            display: inline-flex;
+            align-items: center;
+            color: var(--neon);
+            font-size: 25px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            white-space: nowrap;
+            text-shadow: 0 0 12px rgba(0, 255, 204, 0.13);
         }
 
-        .logo-text {
-            font-size: 20px;
-            font-weight: bold;
-            color: #00ffcc;
-            letter-spacing: 1px;
-        }
-
-        /* Desktop Menu */
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
+        .logo span {
             color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: #00ffcc;
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 14px;
         }
 
-        /* Hamburger Menu Icon */
-        .hamburger {
-            display: none;
+        .header-label {
+            color: var(--muted);
+            font-size: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        /* ================= HAMBURGER TO CROSS ================= */
+
+        .menu-toggle {
+            position: relative;
+            z-index: 1200;
+            width: 48px;
+            height: 48px;
+            display: inline-flex;
             flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 12px;
+            background: var(--panel-light);
             cursor: pointer;
-            gap: 5px;
-            background: none;
-            border: none;
-            padding: 5px;
+            -webkit-tap-highlight-color: transparent;
+            transition:
+                background 250ms ease,
+                border-color 250ms ease,
+                box-shadow 250ms ease,
+                transform 250ms ease;
         }
 
-        .hamburger span {
+        .menu-toggle:hover {
+            background: #252525;
+            border-color: var(--neon);
+            box-shadow: 0 0 16px rgba(0, 255, 204, 0.12);
+        }
+
+        .menu-toggle:active {
+            transform: scale(0.94);
+        }
+
+        .menu-line {
             display: block;
-            width: 25px;
-            height: 3px;
-            background-color: #ffffff;
-            border-radius: 3px;
-            transition: all 0.3s ease;
+            width: 23px;
+            height: 2.5px;
+            border-radius: 10px;
+            background: var(--neon);
+            transform-origin: center;
+            transition:
+                transform 380ms cubic-bezier(0.68, -0.55, 0.27, 1.55),
+                width 250ms ease,
+                opacity 220ms ease;
         }
 
-        main {
-            flex-grow: 1;
+        /* First line rotates down */
+        .menu-toggle.is-active .menu-line:nth-child(1) {
+            transform: translateY(8.5px) rotate(45deg);
         }
 
-        /* Hero / Content Section */
-        .hero-section {
-            padding: 40px 20px;
+        /* Middle line disappears */
+        .menu-toggle.is-active .menu-line:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+
+        /* Third line rotates up */
+        .menu-toggle.is-active .menu-line:nth-child(3) {
+            transform: translateY(-8.5px) rotate(-45deg);
+        }
+
+        /* ================= DRAWER BACKDROP ================= */
+
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition:
+                opacity var(--drawer-duration) ease,
+                visibility 0s linear var(--drawer-duration);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        .drawer-backdrop.is-visible {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transition:
+                opacity var(--drawer-duration) ease,
+                visibility 0s;
+        }
+
+        /* ================= ZOOM DRAWER ================= */
+
+        .nav-drawer {
+            position: fixed;
+            top: 87px;
+            right: 6%;
+            z-index: 1100;
+
+            width: min(340px, calc(100vw - 28px));
+            max-height: calc(100dvh - 110px);
+            overflow-y: auto;
+            overscroll-behavior: contain;
+
+            padding: 20px;
+            border: 1px solid rgba(0, 255, 204, 0.35);
+            border-radius: 18px;
+
+            background:
+                radial-gradient(
+                    circle at top right,
+                    rgba(0, 255, 204, 0.08),
+                    transparent 43%
+                ),
+                rgba(26, 26, 26, 0.99);
+
+            box-shadow:
+                0 18px 60px rgba(0, 0, 0, 0.6),
+                0 0 24px rgba(0, 255, 204, 0.06);
+
+            transform-origin: top right;
+            transform: translate(22px, -18px) scale(0.08);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            transition:
+                transform var(--drawer-duration)
+                    cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 280ms ease,
+                visibility 0s linear var(--drawer-duration);
+            will-change: transform, opacity;
+        }
+
+        .nav-drawer.is-open {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+
+            transition:
+                transform var(--drawer-duration)
+                    cubic-bezier(0.2, 0.8, 0.2, 1),
+                opacity 280ms ease,
+                visibility 0s;
+        }
+
+        /* Close animation: shrink back to top-right */
+        .nav-drawer.is-closing {
+            transform: translate(22px, -18px) scale(0.08);
+            opacity: 0;
+            visibility: visible;
+            pointer-events: none;
+
+            transition:
+                transform var(--drawer-duration)
+                    cubic-bezier(0.4, 0, 1, 1),
+                opacity 280ms ease,
+                visibility 0s linear var(--drawer-duration);
+        }
+
+        .drawer-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            padding: 0 0 15px;
+            margin-bottom: 12px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .drawer-heading h2 {
+            color: var(--neon);
+            font-size: 18px;
+            letter-spacing: 1.5px;
+        }
+
+        .drawer-status {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: var(--neon);
+            box-shadow: 0 0 12px var(--neon);
+        }
+
+        .drawer-links {
+            display: flex;
+            flex-direction: column;
+            gap: 7px;
+            list-style: none;
+        }
+
+        .drawer-links a {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+
+            padding: 12px 13px;
+            border: 1px solid transparent;
+            border-radius: 10px;
+
+            color: #e8e8e8;
+            font-size: 15px;
+            transition:
+                color 220ms ease,
+                background 220ms ease,
+                border-color 220ms ease,
+                padding-left 220ms ease;
+        }
+
+        .drawer-links a::after {
+            content: "›";
+            color: var(--neon);
+            font-size: 22px;
+            line-height: 1;
+            opacity: 0;
+            transform: translateX(-5px);
+            transition:
+                opacity 220ms ease,
+                transform 220ms ease;
+        }
+
+        .drawer-links a:hover,
+        .drawer-links a:focus-visible {
+            color: var(--neon);
+            background: rgba(0, 255, 204, 0.07);
+            border-color: rgba(0, 255, 204, 0.18);
+            padding-left: 17px;
+            outline: none;
+        }
+
+        .drawer-links a:hover::after,
+        .drawer-links a:focus-visible::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .drawer-divider {
+            height: 1px;
+            margin: 13px 0;
+            background: var(--border);
+        }
+
+        .drawer-section-title {
+            margin: 0 0 8px 4px;
+            color: var(--muted);
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+
+        .drawer-footer {
+            margin-top: 17px;
+            padding-top: 13px;
+            border-top: 1px solid var(--border);
+            color: #777777;
+            font-size: 11px;
             text-align: center;
         }
 
-        .hero-section h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        /* ================= HERO ================= */
+
+        .hero {
+            padding: 70px 6% 55px;
+            text-align: center;
+            background:
+                radial-gradient(
+                    ellipse at top,
+                    rgba(0, 255, 204, 0.07),
+                    transparent 60%
+                ),
+                var(--bg);
         }
 
-        .hero-section h1 span {
-            color: #00ffcc;
-            background: linear-gradient(45deg, #00ffcc, #0099ff);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+        .hero-label {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 6px 13px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 50px;
+            color: var(--neon);
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
         }
 
-        /* Auto-Slide Image Box CSS */
-        .slider-wrapper {
+        .hero h1 {
+            margin-bottom: 15px;
+            color: var(--neon);
+            font-size: clamp(34px, 6vw, 58px);
+            font-weight: 900;
+            letter-spacing: 2px;
+            line-height: 1.15;
+            text-shadow: 0 0 25px rgba(0, 255, 204, 0.1);
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--muted);
+            font-size: clamp(14px, 2vw, 17px);
+        }
+
+        /* ================= IMAGE SLIDER ================= */
+
+        .slider-section {
             width: 100%;
-            max-width: 800px;
-            height: 300px;
-            margin: 30px auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            padding: 0 6% 55px;
+        }
+
+        .slider {
             position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: clamp(230px, 42vw, 460px);
+            margin: 0 auto;
+            overflow: hidden;
+            border: 1px solid rgba(0, 255, 204, 0.22);
+            border-radius: 18px;
+            background: #1a1a1a;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
         }
 
         .slider-track {
             display: flex;
             width: 100%;
             height: 100%;
-            transition: transform 0.8s ease-in-out;
+            transition: transform 650ms cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: transform;
         }
 
-        .slider-track img {
+        .slide {
+            position: relative;
+            flex: 0 0 100%;
+            min-width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .slide img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
-            flex-shrink: 0;
+            transition: transform 5s ease;
         }
 
-        /* Professional Footer */
-        .footer {
-            background-color: #1a1a1a;
-            border-top: 2px solid #282828;
-            padding: 40px 20px 15px;
-            margin-top: 40px;
+        .slide.active img {
+            transform: scale(1.04);
         }
 
-        .footer-container {
-            max-width: 1000px;
-            margin: 0 auto;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            gap: 30px;
-        }
-
-        .footer-col {
-            flex: 1;
-            min-width: 200px;
-        }
-
-        .footer-col h3 {
-            color: #ffffff;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
-            position: relative;
-            padding-bottom: 8px;
-        }
-
-        .footer-col h3::after {
-            content: '';
+        .slide::after {
+            content: "";
             position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 40px;
-            height: 2px;
-            background-color: #00ffcc;
+            inset: 0;
+            background: linear-gradient(
+                0deg,
+                rgba(0, 0, 0, 0.55),
+                transparent 55%
+            );
+            pointer-events: none;
         }
 
-        .footer-col p {
-            color: #aaaaaa;
+        .slide-caption {
+            position: absolute;
+            right: 22px;
+            bottom: 23px;
+            left: 22px;
+            z-index: 1;
+            color: #ffffff;
+            font-size: clamp(17px, 3vw, 28px);
+            font-weight: 800;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.8);
+        }
+
+        .slider-arrow {
+            position: absolute;
+            top: 50%;
+            z-index: 5;
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            transform: translateY(-50%);
+            border: 1px solid rgba(255, 255, 255, 0.25);
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.45);
+            color: white;
+            font-size: 25px;
+            cursor: pointer;
+            transition:
+                background 200ms ease,
+                border-color 200ms ease;
+        }
+
+        .slider-arrow:hover {
+            background: rgba(0, 255, 204, 0.18);
+            border-color: var(--neon);
+        }
+
+        .slider-arrow.prev {
+            left: 14px;
+        }
+
+        .slider-arrow.next {
+            right: 14px;
+        }
+
+        .slider-dots {
+            position: absolute;
+            bottom: 13px;
+            left: 50%;
+            z-index: 6;
+            display: flex;
+            gap: 8px;
+            transform: translateX(-50%);
+        }
+
+        .slider-dot {
+            width: 8px;
+            height: 8px;
+            padding: 0;
+            border: none;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.55);
+            cursor: pointer;
+            transition:
+                width 250ms ease,
+                background 250ms ease;
+        }
+
+        .slider-dot.active {
+            width: 24px;
+            background: var(--neon);
+        }
+
+        /* ================= CONTENT CARDS ================= */
+
+        .section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 6% 60px;
+        }
+
+        .section-title {
+            margin-bottom: 12px;
+            color: var(--neon);
+            font-size: clamp(24px, 4vw, 34px);
+            line-height: 1.25;
+        }
+
+        .section-description {
+            margin-bottom: 25px;
+            color: var(--muted);
+            font-size: 15px;
+        }
+
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .info-card {
+            min-width: 0;
+            padding: 24px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--panel);
+            transition:
+                transform 250ms ease,
+                border-color 250ms ease,
+                box-shadow 250ms ease;
+        }
+
+        .info-card:hover {
+            transform: translateY(-4px);
+            border-color: rgba(0, 255, 204, 0.4);
+            box-shadow: 0 12px 28px rgba(0, 0, 0, 0.2);
+        }
+
+        .card-mark {
+            width: 42px;
+            height: 42px;
+            display: grid;
+            place-items: center;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0, 255, 204, 0.3);
+            border-radius: 12px;
+            background: rgba(0, 255, 204, 0.07);
+            color: var(--neon);
+            font-size: 20px;
+        }
+
+        .info-card h3 {
+            margin-bottom: 8px;
+            color: #ffffff;
+            font-size: 18px;
+        }
+
+        .info-card p {
+            color: var(--muted);
             font-size: 14px;
-            margin-bottom: 10px;
         }
 
-        .footer-col ul {
-            list-style: none;
+        .card-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--neon);
+            font-size: 13px;
+            font-weight: 700;
         }
 
-        .footer-col ul li {
-            margin-bottom: 10px;
+        .card-link:hover {
+            text-decoration: underline;
         }
 
-        .footer-col ul li a {
-            color: #aaaaaa;
-            text-decoration: none;
-            font-size: 14px;
-            transition: color 0.3s;
+        /* ================= FOOTER ================= */
+
+        .footer {
+            padding: 45px 6% 20px;
+            border-top: 1px solid var(--border);
+            background: #0d0d0d;
         }
 
-        .footer-col ul li a:hover {
-            color: #00ffcc;
-            padding-left: 5px;
-            transition: all 0.3s ease;
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.3fr 1fr 1fr;
+            gap: 35px;
+            max-width: 1200px;
+            margin: 0 auto 35px;
         }
 
-        .footer-bottom {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 15px;
-            border-top: 1px solid #333;
-            color: #777777;
+        .footer-brand {
+            margin-bottom: 12px;
+            color: var(--neon);
+            font-size: 23px;
+            font-weight: 900;
+            letter-spacing: 2px;
+        }
+
+        .footer p {
+            color: var(--muted);
             font-size: 13px;
         }
 
-        /* Responsive Mobile Layout */
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
+        .footer h3 {
+            margin-bottom: 13px;
+            color: #ffffff;
+            font-size: 15px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .footer-links a {
+            color: var(--muted);
+            font-size: 13px;
+            transition: color 200ms ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--neon);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 18px;
+            border-top: 1px solid #252525;
+            color: #777777;
+            font-size: 12px;
+            text-align: center;
+        }
+
+        /* ================= RESPONSIVE ================= */
+
+        @media (max-width: 760px) {
+            .navbar {
+                min-height: 68px;
+                padding: 10px 5%;
             }
 
-            .nav-links {
+            .logo {
+                font-size: 22px;
+            }
+
+            .header-label {
                 display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: #1a1a1a;
-                padding: 10px 0;
-                border-bottom: 2px solid #282828;
             }
 
-            .nav-links.active {
-                display: flex;
+            .menu-toggle {
+                width: 45px;
+                height: 45px;
             }
 
-            .nav-links li {
-                text-align: center;
-                margin: 15px 0;
+            .nav-drawer {
+                top: 77px;
+                right: 5%;
+                width: min(340px, 90vw);
+                max-height: calc(100dvh - 95px);
             }
 
-            .slider-wrapper {
-                height: 200px;
+            .hero {
+                padding: 52px 5% 38px;
             }
 
-            .footer-container {
-                flex-direction: column;
+            .slider-section {
+                padding: 0 5% 40px;
+            }
+
+            .slider {
+                border-radius: 13px;
+            }
+
+            .slider-arrow {
+                width: 36px;
+                height: 36px;
+            }
+
+            .section {
+                padding: 15px 5% 45px;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+                gap: 13px;
+            }
+
+            .info-card {
+                padding: 20px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 28px 20px;
+            }
+
+            .footer-about {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 380px) {
+            .logo {
+                font-size: 19px;
+                letter-spacing: 1.5px;
+            }
+
+            .nav-drawer {
+                right: 14px;
+                width: calc(100vw - 28px);
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-about {
+                grid-column: auto;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
             }
         }
     </style>
@@ -288,70 +800,217 @@
 
 <body>
 
-    <nav class="navbar">
-        <a href="index.html" class="logo-container">
-            <img src="logo.png"
-                 alt="Laymex Logo"
-                 class="logo-img"
-                 onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=L'">
+    <!-- ================= HEADER ================= -->
 
-            <span class="logo-text">LAYMEX</span>
+    <header class="navbar">
+        <a class="logo" href="index.html" aria-label="Laymex home">
+            LAY<span>MEX</span>
         </a>
 
-        <button class="hamburger"
-                id="menu-toggle"
-                aria-label="Toggle navigation"
-                aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+        <div class="header-actions">
+            <span class="header-label">Official Website</span>
 
-        <ul class="nav-links" id="nav-list">
+            <button
+                class="menu-toggle"
+                id="menu-toggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="nav-drawer"
+            >
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+                <span class="menu-line"></span>
+            </button>
+        </div>
+    </header>
+
+    <!-- ================= DRAWER BACKDROP ================= -->
+
+    <div
+        class="drawer-backdrop"
+        id="drawer-backdrop"
+        aria-hidden="true"
+    ></div>
+
+    <!-- ================= NAVIGATION DRAWER ================= -->
+
+    <nav
+        class="nav-drawer"
+        id="nav-drawer"
+        aria-label="Main navigation"
+        aria-hidden="true"
+        inert
+    >
+        <div class="drawer-heading">
+            <h2>LAYMEX MENU</h2>
+            <span class="drawer-status" aria-hidden="true"></span>
+        </div>
+
+        <ul class="drawer-links">
             <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+            <li><a href="services.html">Our Services</a></li>
+            <li><a href="contact.html">Contact Us</a></li>
         </ul>
+
+        <div class="drawer-divider"></div>
+
+        <p class="drawer-section-title">Legal &amp; Policies</p>
+
+        <ul class="drawer-links">
+            <li><a href="terms.html">Terms &amp; Conditions</a></li>
+            <li><a href="privacy.html">Privacy Policy</a></li>
+            <li><a href="refund.html">Refund Policy</a></li>
+            <li><a href="return.html">Return Policy</a></li>
+            <li><a href="shipping.html">Shipping Policy</a></li>
+        </ul>
+
+        <div class="drawer-footer">
+            © 2026 LAYMEX. All Rights Reserved.
+        </div>
     </nav>
 
     <main>
-        <section class="hero-section">
-            <h1>Welcome to <span>LAYMEX</span></h1>
+        <!-- ================= HERO ================= -->
+
+        <section class="hero">
+            <span class="hero-label">Welcome to Laymex</span>
+
+            <h1>WELCOME TO LAYMEX</h1>
 
             <p>
                 Discover Laymex and explore our website.
             </p>
+        </section>
 
-            <div class="slider-wrapper">
+        <!-- ================= IMAGE SLIDER ================= -->
+
+        <section class="slider-section" aria-label="Featured images">
+            <div class="slider" id="image-slider">
                 <div class="slider-track" id="slider-track">
-                    <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?w=800&q=80"
-                         alt="Beautiful landscape - Slide 1">
 
-                    <img src="https://images.unsplash.com/photo-1470770841072-f978ccc4f0e8?w=800&q=80"
-                         alt="Mountain landscape - Slide 2">
+                    <div class="slide active">
+                        <img
+                            src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=1800&q=85"
+                            alt="Beautiful landscape"
+                            fetchpriority="high"
+                        >
+                        <div class="slide-caption">
+                            Discover Laymex
+                        </div>
+                    </div>
 
-                    <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=800&q=80"
-                         alt="Nature landscape - Slide 3">
+                    <div class="slide">
+                        <img
+                            src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1800&q=85"
+                            alt="Mountain landscape"
+                            loading="lazy"
+                        >
+                        <div class="slide-caption">
+                            Explore New Possibilities
+                        </div>
+                    </div>
+
+                    <div class="slide">
+                        <img
+                            src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1800&q=85"
+                            alt="Nature landscape"
+                            loading="lazy"
+                        >
+                        <div class="slide-caption">
+                            Welcome to Our World
+                        </div>
+                    </div>
+
                 </div>
+
+                <button
+                    class="slider-arrow prev"
+                    id="slider-prev"
+                    type="button"
+                    aria-label="Previous slide"
+                >&#8249;</button>
+
+                <button
+                    class="slider-arrow next"
+                    id="slider-next"
+                    type="button"
+                    aria-label="Next slide"
+                >&#8250;</button>
+
+                <div
+                    class="slider-dots"
+                    id="slider-dots"
+                    aria-label="Choose slide"
+                >
+                    <button class="slider-dot active" type="button" aria-label="Slide 1"></button>
+                    <button class="slider-dot" type="button" aria-label="Slide 2"></button>
+                    <button class="slider-dot" type="button" aria-label="Slide 3"></button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= ABOUT ================= -->
+
+        <section class="section" id="about">
+            <h2 class="section-title">About Laymex</h2>
+
+            <p class="section-description">
+                Welcome to Laymex. Explore our website to learn more about
+                our products, services, and digital experiences.
+            </p>
+
+            <div class="cards">
+                <article class="info-card">
+                    <div class="card-mark" aria-hidden="true">&#9670;</div>
+                    <h3>About Us</h3>
+                    <p>
+                        Learn more about Laymex, our background, and our
+                        vision for the future.
+                    </p>
+                    <a class="card-link" href="about.html">Explore About Us &rarr;</a>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-mark" aria-hidden="true">&#10022;</div>
+                    <h3>Our Services</h3>
+                    <p>
+                        Discover the services and experiences available
+                        through Laymex.
+                    </p>
+                    <a class="card-link" href="services.html">Explore Services &rarr;</a>
+                </article>
+
+                <article class="info-card">
+                    <div class="card-mark" aria-hidden="true">&#9993;</div>
+                    <h3>Contact Us</h3>
+                    <p>
+                        Have a question? Get in touch with the Laymex team
+                        through our contact page.
+                    </p>
+                    <a class="card-link" href="contact.html">Contact Laymex &rarr;</a>
+                </article>
             </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <div class="footer-container">
+    <!-- ================= FOOTER ================= -->
 
-            <div class="footer-col">
-                <h3>About Laymex</h3>
+    <footer class="footer">
+        <div class="footer-grid">
+
+            <div class="footer-about">
+                <div class="footer-brand">LAYMEX</div>
                 <p>
-                    Welcome to Laymex. Explore our website to learn more
-                    about our products, services, and digital experiences.
+                    Welcome to Laymex. Visit our pages to explore our
+                    services, learn more about us, or contact our team.
                 </p>
             </div>
 
-            <div class="footer-col">
+            <div>
                 <h3>Quick Links</h3>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="index.html">Home</a></li>
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="services.html">Our Services</a></li>
@@ -359,22 +1018,15 @@
                 </ul>
             </div>
 
-            <div class="footer-col">
+            <div>
                 <h3>Legal &amp; Policies</h3>
-                <ul>
+                <ul class="footer-links">
                     <li><a href="terms.html">Terms &amp; Conditions</a></li>
                     <li><a href="privacy.html">Privacy Policy</a></li>
                     <li><a href="refund.html">Refund Policy</a></li>
                     <li><a href="return.html">Return Policy</a></li>
                     <li><a href="shipping.html">Shipping Policy</a></li>
                 </ul>
-            </div>
-
-            <div class="footer-col">
-                <h3>Contact Info</h3>
-                <p>📧 Email: info@dantanisgroup.online</p>
-                <p>📞 Phone: +91 12345 67890</p>
-                <p>📍 Location: India</p>
             </div>
 
         </div>
@@ -385,34 +1037,232 @@
     </footer>
 
     <script>
-        // Hamburger Menu Logic
-        const menuToggle = document.getElementById('menu-toggle');
-        const navList = document.getElementById('nav-list');
+        /* ==================================================
+           DRAWER: HAMBURGER <-> CROSS
+           ZOOM IN FROM TOP-RIGHT / ZOOM OUT TO TOP-RIGHT
+        ================================================== */
 
-        menuToggle.addEventListener('click', function() {
-            const isExpanded = navList.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-        });
+        (function () {
+            const menuButton = document.getElementById("menu-toggle");
+            const drawer = document.getElementById("nav-drawer");
+            const backdrop = document.getElementById("drawer-backdrop");
 
-        // Auto-Slide Logic
-        const track = document.getElementById('slider-track');
-        const slides = track.querySelectorAll('img');
-        let slideIndex = 0;
-        const totalSlides = slides.length;
+            const drawerDuration = 420;
+            let isOpen = false;
+            let closeTimer = null;
 
-        function autoSlide() {
-            slideIndex++;
+            function openDrawer() {
+                if (closeTimer !== null) {
+                    clearTimeout(closeTimer);
+                    closeTimer = null;
+                }
 
-            if (slideIndex >= totalSlides) {
-                slideIndex = 0;
+                isOpen = true;
+
+                drawer.inert = false;
+                drawer.setAttribute("aria-hidden", "false");
+
+                drawer.classList.remove("is-closing");
+
+                // Force the browser to register the closed state
+                // before applying the open animation.
+                drawer.classList.remove("is-open");
+                void drawer.offsetWidth;
+
+                drawer.classList.add("is-open");
+                backdrop.classList.add("is-visible");
+
+                menuButton.classList.add("is-active");
+                menuButton.setAttribute("aria-expanded", "true");
+                menuButton.setAttribute("aria-label", "Close navigation menu");
+
+                document.body.classList.add("drawer-open");
             }
 
-            track.style.transform = `translateX(-${slideIndex * 100}%)`;
-        }
+            function closeDrawer() {
+                if (!isOpen) {
+                    return;
+                }
 
-        if (totalSlides > 1) {
-            setInterval(autoSlide, 3000);
-        }
+                isOpen = false;
+
+                // Animate the icon back into three lines.
+                menuButton.classList.remove("is-active");
+                menuButton.setAttribute("aria-expanded", "false");
+                menuButton.setAttribute("aria-label", "Open navigation menu");
+
+                // Animate drawer back to the top-right corner.
+                drawer.classList.remove("is-open");
+                drawer.classList.add("is-closing");
+                backdrop.classList.remove("is-visible");
+
+                document.body.classList.remove("drawer-open");
+
+                if (closeTimer !== null) {
+                    clearTimeout(closeTimer);
+                }
+
+                closeTimer = setTimeout(function () {
+                    if (!isOpen) {
+                        drawer.classList.remove("is-closing");
+                        drawer.setAttribute("aria-hidden", "true");
+                        drawer.inert = true;
+                    }
+
+                    closeTimer = null;
+                }, drawerDuration);
+            }
+
+            function toggleDrawer() {
+                if (isOpen) {
+                    closeDrawer();
+                } else {
+                    openDrawer();
+                }
+            }
+
+            menuButton.addEventListener("click", toggleDrawer);
+
+            backdrop.addEventListener("click", closeDrawer);
+
+            document.addEventListener("keydown", function (event) {
+                if (event.key === "Escape" && isOpen) {
+                    closeDrawer();
+                    menuButton.focus();
+                }
+            });
+
+            // Close the drawer after a navigation link is selected.
+            drawer.querySelectorAll("a").forEach(function (link) {
+                link.addEventListener("click", function () {
+                    closeDrawer();
+                });
+            });
+
+            // Close the drawer if the viewport changes to desktop size.
+            window.addEventListener("resize", function () {
+                if (window.innerWidth > 760 && isOpen) {
+                    closeDrawer();
+                }
+            });
+        })();
+
+
+        /* ==================================================
+           IMAGE SLIDER: THREE SLIDES, AUTO-ADVANCE EVERY 3 SEC
+        ================================================== */
+
+        (function () {
+            const track = document.getElementById("slider-track");
+            const slider = document.getElementById("image-slider");
+            const slides = Array.from(track.querySelectorAll(".slide"));
+            const dots = Array.from(
+                document.querySelectorAll("#slider-dots .slider-dot")
+            );
+            const prevButton = document.getElementById("slider-prev");
+            const nextButton = document.getElementById("slider-next");
+
+            let currentIndex = 0;
+            let autoTimer = null;
+            let touchStartX = 0;
+
+            function showSlide(index) {
+                currentIndex = (index + slides.length) % slides.length;
+
+                track.style.transform =
+                    "translateX(-" + (currentIndex * 100) + "%)";
+
+                slides.forEach(function (slide, i) {
+                    slide.classList.toggle("active", i === currentIndex);
+                });
+
+                dots.forEach(function (dot, i) {
+                    dot.classList.toggle("active", i === currentIndex);
+                    dot.setAttribute(
+                        "aria-current",
+                        i === currentIndex ? "true" : "false"
+                    );
+                });
+            }
+
+            function nextSlide() {
+                showSlide(currentIndex + 1);
+            }
+
+            function previousSlide() {
+                showSlide(currentIndex - 1);
+            }
+
+            function startAutoSlide() {
+                stopAutoSlide();
+
+                autoTimer = setInterval(function () {
+                    if (!document.hidden) {
+                        nextSlide();
+                    }
+                }, 3000);
+            }
+
+            function stopAutoSlide() {
+                if (autoTimer !== null) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            nextButton.addEventListener("click", function () {
+                nextSlide();
+                startAutoSlide();
+            });
+
+            prevButton.addEventListener("click", function () {
+                previousSlide();
+                startAutoSlide();
+            });
+
+            dots.forEach(function (dot, index) {
+                dot.addEventListener("click", function () {
+                    showSlide(index);
+                    startAutoSlide();
+                });
+            });
+
+            slider.addEventListener("mouseenter", stopAutoSlide);
+            slider.addEventListener("mouseleave", startAutoSlide);
+
+            slider.addEventListener("focusin", stopAutoSlide);
+            slider.addEventListener("focusout", startAutoSlide);
+
+            slider.addEventListener("touchstart", function (event) {
+                touchStartX = event.changedTouches[0].screenX;
+            }, { passive: true });
+
+            slider.addEventListener("touchend", function (event) {
+                const touchEndX = event.changedTouches[0].screenX;
+                const difference = touchEndX - touchStartX;
+
+                if (Math.abs(difference) > 45) {
+                    if (difference < 0) {
+                        nextSlide();
+                    } else {
+                        previousSlide();
+                    }
+
+                    startAutoSlide();
+                }
+            }, { passive: true });
+
+            document.addEventListener("visibilitychange", function () {
+                if (document.hidden) {
+                    stopAutoSlide();
+                } else {
+                    startAutoSlide();
+                }
+            });
+
+            showSlide(0);
+            startAutoSlide();
+        })();
     </script>
 
 </body>
