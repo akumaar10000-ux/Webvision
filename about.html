@@ -3,9 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Us - DANTANIS GROUP</title>
+
+    <title>About Laymex | Official Website</title>
+
+    <meta name="description" content="Learn more about Laymex, our mission, and the digital solutions and products we offer.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://laymex.com/about.html">
+
+    <meta property="og:site_name" content="Laymex">
+    <meta property="og:title" content="About Laymex | Official Website">
+    <meta property="og:description" content="Learn more about Laymex and our mission.">
+    <meta property="og:url" content="https://laymex.com/about.html">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://laymex.com/logo.png">
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "AboutPage",
+        "name": "About Laymex",
+        "url": "https://laymex.com/about.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Laymex",
+            "url": "https://laymex.com/"
+        }
+    }
+    </script>
+
     <style>
-        /* Base Styles & Navbar/Footer (Same as index) */
         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
         body { background-color: #121212; color: #ffffff; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
         .navbar { background-color: #1a1a1a; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #282828; position: sticky; top: 0; z-index: 1000; }
@@ -18,8 +44,7 @@
         .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; }
         .hamburger span { display: block; width: 25px; height: 3px; background-color: #ffffff; border-radius: 3px; transition: all 0.3s; }
         main { flex-grow: 1; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
-        
-        /* About Page Specific Styles */
+
         .page-header { text-align: center; margin-bottom: 40px; }
         .page-header h1 { font-size: 2.5rem; color: #00ffcc; }
         .about-content { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; }
@@ -28,7 +53,6 @@
         .about-image { flex: 1; min-width: 300px; text-align: center; }
         .about-image img { width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,255,204,0.1); }
 
-        /* Footer */
         .footer { background-color: #1a1a1a; border-top: 2px solid #282828; padding: 40px 20px 15px; margin-top: 40px; }
         .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; }
         .footer-col { flex: 1; min-width: 250px; }
@@ -51,10 +75,15 @@
 <body>
     <nav class="navbar">
         <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="Logo" class="logo-img" onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=DG'">
-            <span class="logo-text">DANTANIS GROUP</span>
+            <img src="logo.png" alt="Laymex Logo" class="logo-img"
+                 onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=L'">
+            <span class="logo-text">LAYMEX</span>
         </a>
-        <button class="hamburger" id="menu-toggle"><span></span><span></span><span></span></button>
+
+        <button class="hamburger" id="menu-toggle" aria-label="Toggle navigation">
+            <span></span><span></span><span></span>
+        </button>
+
         <ul class="nav-links" id="nav-list">
             <li><a href="index.html">Home</a></li>
             <li><a style="color:#00ffcc;" href="about.html">About Us</a></li>
@@ -68,15 +97,18 @@
             <h1>About Us</h1>
             <p style="color: #aaaaaa;">Who we are and what we do.</p>
         </div>
+
         <div class="about-content">
             <div class="about-text">
-                <h2>Welcome to DANTANIS GROUP</h2>
+                <h2>Welcome to Laymex</h2>
                 <br>
-                <p>We are a dedicated team focused on delivering high-quality digital solutions. From intuitive user interfaces to robust logic, we believe in building products that matter.</p>
-                <p>Our journey started with a passion for problem-solving and technology. Today, we specialize in creating custom platforms, optimizing workflows, and turning creative ideas into functional realities.</p>
+                <p>Laymex is focused on delivering high-quality digital solutions. From intuitive user interfaces to reliable digital experiences, we aim to build products that matter.</p>
+                <p>Our goal is to bring creative ideas to life through useful products, thoughtful design, and innovative technology.</p>
             </div>
+
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80" alt="Our Team">
+                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80"
+                     alt="The Laymex team working together">
             </div>
         </div>
     </main>
@@ -84,25 +116,35 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-col">
-                <h3>About DANTANIS GROUP</h3>
-                <p>Dedicated to providing the best digital solutions, customized designs, and innovative platforms.</p>
+                <h3>About Laymex</h3>
+                <p>Dedicated to creating useful products, thoughtful designs, and innovative digital experiences.</p>
             </div>
+
             <div class="footer-col">
                 <h3>Quick Links</h3>
                 <ul>
-                    <li><a href="index.html">Home</a></li><li><a href="about.html">About Us</a></li><li><a href="services.html">Our Services</a></li><li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+                    <li><a href="contact.html">Contact Us</a></li>
                 </ul>
             </div>
+
             <div class="footer-col">
                 <h3>Contact Info</h3>
-                <p>📧 info@dantanisgroup.online</p><p>📞 +91 12345 67890</p><p>📍 India</p>
+                <p>📧 info@dantanisgroup.online</p>
+                <p>📞 +91 12345 67890</p>
+                <p>📍 India</p>
             </div>
         </div>
-        <div class="footer-bottom">&copy; 2026 DANTANIS GROUP. All Rights Reserved.</div>
+
+        <div class="footer-bottom">
+            &copy; 2026 Laymex. All Rights Reserved.
+        </div>
     </footer>
 
     <script>
-        document.getElementById('menu-toggle').addEventListener('click', () => {
+        document.getElementById('menu-toggle').addEventListener('click', function() {
             document.getElementById('nav-list').classList.toggle('active');
         });
     </script>
