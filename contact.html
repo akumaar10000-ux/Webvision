@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +33,6 @@
     </script>
 
     <style>
-        /* Base Styles & Navbar/Footer */
         * {
             margin: 0;
             padding: 0;
@@ -41,24 +41,26 @@
         }
 
         body {
-            background-color: #121212;
+            background: #121212;
             color: #ffffff;
             line-height: 1.6;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            min-height: 100vh;
         }
 
+        /* NAVBAR */
+
         .navbar {
-            background-color: #1a1a1a;
-            padding: 15px 24px;
+            background: #1a1a1a;
+            padding: 12px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #282828;
             position: sticky;
             top: 0;
-            z-index: 1000;
+            z-index: 1101;
         }
 
         .logo-container {
@@ -83,42 +85,143 @@
             letter-spacing: 1px;
         }
 
-        .nav-links {
-            list-style: none;
-            display: flex;
-            gap: 25px;
-        }
-
-        .nav-links a {
-            color: #ffffff;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 500;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: #00ffcc;
-        }
+        /* HAMBURGER BUTTON */
 
         .hamburger {
-            display: none;
+            display: flex;
             flex-direction: column;
-            cursor: pointer;
+            justify-content: center;
+            align-items: center;
             gap: 5px;
-            background: none;
-            border: none;
-            padding: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 8px;
+            cursor: pointer;
+            background: transparent;
+            border: 1px solid #333;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1102;
+            flex-shrink: 0;
         }
 
         .hamburger span {
             display: block;
-            width: 25px;
+            width: 24px;
             height: 3px;
-            background-color: #ffffff;
+            background: #00ffcc;
             border-radius: 3px;
-            transition: all 0.3s;
+            transition: transform 0.35s ease,
+                        opacity 0.25s ease;
+            transform-origin: center;
         }
+
+        /* THREE LINES TO CROSS */
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* DRAWER BACKDROP */
+
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 1098;
+            transition: opacity 0.35s ease,
+                        visibility 0.35s ease;
+        }
+
+        .drawer-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* NAVIGATION DRAWER */
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            position: fixed;
+            top: 78px;
+            right: 16px;
+            left: auto;
+
+            width: min(280px, calc(100vw - 32px));
+            padding: 16px;
+
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+
+            transform: translate(12px, -12px) scale(0.08);
+            transform-origin: top right;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            z-index: 1100;
+
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        opacity 0.3s ease,
+                        visibility 0.4s ease;
+        }
+
+        .nav-links.active {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .nav-links.is-closing {
+            transform: translate(12px, -12px) scale(0.08);
+            opacity: 0;
+            visibility: visible;
+            pointer-events: none;
+        }
+
+        .nav-links li {
+            margin: 0;
+            text-align: left;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 12px 14px;
+            border-radius: 9px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.25s ease,
+                        color 0.25s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a:focus {
+            color: #00ffcc;
+            background: #252525;
+        }
+
+        /* MAIN CONTACT CONTENT */
 
         main {
             flex-grow: 1;
@@ -128,7 +231,6 @@
             width: 100%;
         }
 
-        /* Contact Page */
         .page-header {
             text-align: center;
             margin-bottom: 30px;
@@ -137,14 +239,19 @@
         .page-header h1 {
             font-size: 2.5rem;
             color: #00ffcc;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #aaaaaa;
         }
 
         .contact-container {
-            background-color: #1a1a1a;
+            background: #1a1a1a;
             padding: 30px;
             border-radius: 15px;
             border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
 
         .form-group {
@@ -160,11 +267,12 @@
         .form-control {
             width: 100%;
             padding: 12px;
-            background-color: #121212;
+            background: #121212;
             border: 1px solid #333;
             color: #ffffff;
             border-radius: 8px;
             outline: none;
+            font-size: 15px;
             transition: border-color 0.3s;
         }
 
@@ -194,9 +302,10 @@
             transform: scale(1.02);
         }
 
-        /* Footer */
+        /* FOOTER */
+
         .footer {
-            background-color: #1a1a1a;
+            background: #1a1a1a;
             border-top: 2px solid #282828;
             padding: 40px 20px 15px;
             margin-top: 40px;
@@ -213,7 +322,7 @@
 
         .footer-col {
             flex: 1;
-            min-width: 250px;
+            min-width: 220px;
         }
 
         .footer-col h3 {
@@ -231,7 +340,7 @@
             bottom: 0;
             width: 40px;
             height: 2px;
-            background-color: #00ffcc;
+            background: #00ffcc;
         }
 
         .footer-col p,
@@ -240,6 +349,11 @@
             text-decoration: none;
             font-size: 14px;
             transition: color 0.3s;
+        }
+
+        .footer-col p {
+            margin-bottom: 8px;
+            overflow-wrap: anywhere;
         }
 
         .footer-col ul {
@@ -264,108 +378,199 @@
             font-size: 13px;
         }
 
-        @media (max-width: 768px) {
-            .hamburger {
-                display: flex;
+        .footer-legal {
+            max-width: 1000px;
+            margin: 28px auto 0;
+            padding-top: 22px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-legal h3 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+        }
+
+        .footer-legal-links a {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.25s ease;
+        }
+
+        .footer-legal-links a:hover {
+            color: #00ffcc;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
             }
 
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                background-color: #1a1a1a;
-                padding: 10px 0;
-                border-bottom: 2px solid #282828;
+            .logo-img {
+                width: 40px;
+                height: 40px;
             }
 
-            .nav-links.active {
-                display: flex;
+            .logo-text {
+                font-size: 18px;
             }
 
-            .nav-links li {
-                text-align: center;
-                margin: 15px 0;
+            main {
+                padding: 30px 15px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .contact-container {
+                padding: 20px;
+            }
+
+            .footer-col {
+                min-width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hamburger span,
+            .nav-links,
+            .drawer-backdrop {
+                transition-duration: 0.01ms;
             }
         }
     </style>
 </head>
 
 <body>
-    <nav class="navbar">
+
+    <!-- NAVBAR -->
+    <nav class="navbar" aria-label="Main navigation">
+
         <a href="index.html" class="logo-container">
-            <img src="logo.png"
-                 alt="Laymex Logo"
-                 class="logo-img"
-                 onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=L'">
+            <img
+                src="logo.png"
+                alt="Laymex Logo"
+                class="logo-img"
+                onerror="this.onerror=null;this.src='https://via.placeholder.com/45/00ffcc/000000?text=L';">
 
             <span class="logo-text">LAYMEX</span>
         </a>
 
-        <button class="hamburger"
-                id="menu-toggle"
-                aria-label="Toggle navigation"
-                aria-expanded="false">
+        <!-- Hamburger Button -->
+        <button
+            class="hamburger"
+            id="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="nav-list">
+
             <span></span>
             <span></span>
             <span></span>
         </button>
 
-        <ul class="nav-links" id="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a style="color:#00ffcc;" href="contact.html">Contact</a></li>
+        <!-- Drawer Backdrop -->
+        <div
+            class="drawer-backdrop"
+            id="drawerBackdrop">
+        </div>
+
+        <!-- Drawer: Only 4 Sections -->
+        <ul
+            class="nav-links"
+            id="nav-list"
+            aria-hidden="true"
+            inert>
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html">About Us</a>
+            </li>
+
+            <li>
+                <a href="services.html">Our Services</a>
+            </li>
+
+            <li>
+                <a href="contact.html" aria-current="page"
+                   style="color:#00ffcc;">Contact Us</a>
+            </li>
+
         </ul>
     </nav>
 
+    <!-- MAIN CONTENT -->
     <main>
+
         <div class="page-header">
             <h1>Contact Us</h1>
-            <p style="color: #aaaaaa;">Get in touch with the Laymex team.</p>
+            <p>Get in touch with the Laymex team.</p>
         </div>
 
         <div class="contact-container">
+
             <form action="#" method="POST">
+
                 <div class="form-group">
                     <label for="name">Your Name</label>
-                    <input type="text"
-                           id="name"
-                           name="name"
-                           class="form-control"
-                           placeholder="Enter your full name"
-                           autocomplete="name"
-                           required>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        class="form-control"
+                        placeholder="Enter your full name"
+                        autocomplete="name"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label for="email">Email Address</label>
-                    <input type="email"
-                           id="email"
-                           name="email"
-                           class="form-control"
-                           placeholder="Enter your email"
-                           autocomplete="email"
-                           required>
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        class="form-control"
+                        placeholder="Enter your email"
+                        autocomplete="email"
+                        required>
                 </div>
 
                 <div class="form-group">
                     <label for="message">Your Message</label>
-                    <textarea id="message"
-                              name="message"
-                              class="form-control"
-                              placeholder="How can we help you?"
-                              required></textarea>
+                    <textarea
+                        id="message"
+                        name="message"
+                        class="form-control"
+                        placeholder="How can we help you?"
+                        required></textarea>
                 </div>
 
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">
+                    Send Message
+                </button>
+
             </form>
+
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
+
         <div class="footer-container">
 
             <div class="footer-col">
@@ -388,9 +593,28 @@
 
             <div class="footer-col">
                 <h3>Contact Info</h3>
-                <p>📧 info@laymex.com</p>
+                <p>
+                    📧 <a href="mailto:info@laymex.com"
+                    style="color:#aaaaaa;text-decoration:none;">
+                    info@laymex.com</a>
+                </p>
                 <p>📞 +91 12345 67890</p>
                 <p>📍 India</p>
+            </div>
+
+        </div>
+
+        <!-- LEGAL POLICIES: FOOTER ONLY -->
+        <div class="footer-legal">
+
+            <h3>Legal &amp; Policies</h3>
+
+            <div class="footer-legal-links">
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="refund.html">Refund Policy</a>
+                <a href="return.html">Return Policy</a>
+                <a href="shipping.html">Shipping Policy</a>
             </div>
 
         </div>
@@ -398,16 +622,86 @@
         <div class="footer-bottom">
             &copy; 2026 Laymex. All Rights Reserved.
         </div>
+
     </footer>
 
+    <!-- DRAWER ANIMATION AND CONTROLS -->
     <script>
-        const menuToggle = document.getElementById('menu-toggle');
-        const navList = document.getElementById('nav-list');
+        (function () {
+            var menuToggle = document.getElementById('menu-toggle');
+            var navList = document.getElementById('nav-list');
+            var backdrop = document.getElementById('drawerBackdrop');
+            var closeTimer = null;
 
-        menuToggle.addEventListener('click', function() {
-            const isExpanded = navList.classList.toggle('active');
-            menuToggle.setAttribute('aria-expanded', isExpanded);
-        });
+            if (!menuToggle || !navList || !backdrop) {
+                return;
+            }
+
+            function openMenu() {
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                    closeTimer = null;
+                }
+
+                navList.classList.remove('is-closing');
+                navList.classList.add('active');
+                backdrop.classList.add('active');
+                menuToggle.classList.add('active');
+
+                navList.removeAttribute('inert');
+                navList.setAttribute('aria-hidden', 'false');
+
+                menuToggle.setAttribute('aria-expanded', 'true');
+                menuToggle.setAttribute('aria-label', 'Close menu');
+            }
+
+            function closeMenu() {
+                if (!navList.classList.contains('active')) {
+                    return;
+                }
+
+                navList.classList.remove('active');
+                navList.classList.add('is-closing');
+                backdrop.classList.remove('active');
+                menuToggle.classList.remove('active');
+
+                navList.setAttribute('aria-hidden', 'true');
+                navList.setAttribute('inert', '');
+
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open menu');
+
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                }
+
+                closeTimer = setTimeout(function () {
+                    navList.classList.remove('is-closing');
+                    closeTimer = null;
+                }, 420);
+            }
+
+            menuToggle.addEventListener('click', function () {
+                if (navList.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            backdrop.addEventListener('click', closeMenu);
+
+            navList.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    closeMenu();
+                }
+            });
+        })();
     </script>
+
 </body>
 </html>
