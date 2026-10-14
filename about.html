@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,92 +33,513 @@
     </script>
 
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Tahoma, sans-serif; }
-        body { background-color: #121212; color: #ffffff; line-height: 1.6; display: flex; flex-direction: column; min-height: 100vh; }
-        .navbar { background-color: #1a1a1a; padding: 15px 24px; display: flex; justify-content: space-between; align-items: center; border-bottom: 2px solid #282828; position: sticky; top: 0; z-index: 1000; }
-        .logo-container { display: flex; align-items: center; gap: 12px; text-decoration: none; }
-        .logo-img { width: 45px; height: 45px; border-radius: 50%; object-fit: cover; border: 2px solid #00ffcc; }
-        .logo-text { font-size: 20px; font-weight: bold; color: #00ffcc; letter-spacing: 1px; }
-        .nav-links { list-style: none; display: flex; gap: 25px; }
-        .nav-links a { color: #ffffff; text-decoration: none; font-size: 16px; font-weight: 500; transition: color 0.3s ease; }
-        .nav-links a:hover { color: #00ffcc; }
-        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; background: none; border: none; padding: 5px; }
-        .hamburger span { display: block; width: 25px; height: 3px; background-color: #ffffff; border-radius: 3px; transition: all 0.3s; }
-        main { flex-grow: 1; padding: 40px 20px; max-width: 1000px; margin: 0 auto; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+        }
 
-        .page-header { text-align: center; margin-bottom: 40px; }
-        .page-header h1 { font-size: 2.5rem; color: #00ffcc; }
-        .about-content { display: flex; flex-wrap: wrap; gap: 30px; align-items: center; }
-        .about-text { flex: 1; min-width: 300px; }
-        .about-text p { color: #aaaaaa; margin-bottom: 15px; font-size: 1.1rem; }
-        .about-image { flex: 1; min-width: 300px; text-align: center; }
-        .about-image img { width: 100%; max-width: 400px; border-radius: 15px; box-shadow: 0 10px 20px rgba(0,255,204,0.1); }
+        body {
+            background: #121212;
+            color: #ffffff;
+            line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
 
-        .footer { background-color: #1a1a1a; border-top: 2px solid #282828; padding: 40px 20px 15px; margin-top: 40px; }
-        .footer-container { max-width: 1000px; margin: 0 auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; }
-        .footer-col { flex: 1; min-width: 250px; }
-        .footer-col h3 { color: #ffffff; margin-bottom: 15px; font-size: 1.2rem; position: relative; padding-bottom: 8px; }
-        .footer-col h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 40px; height: 2px; background-color: #00ffcc; }
-        .footer-col p, .footer-col ul li a { color: #aaaaaa; text-decoration: none; font-size: 14px; transition: color 0.3s; }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a:hover { color: #00ffcc; padding-left: 5px; }
-        .footer-bottom { text-align: center; margin-top: 30px; padding-top: 15px; border-top: 1px solid #333; color: #777777; font-size: 13px; }
+        /* NAVBAR */
 
-        @media (max-width: 768px) {
-            .hamburger { display: flex; }
-            .nav-links { display: none; flex-direction: column; width: 100%; position: absolute; top: 100%; left: 0; background-color: #1a1a1a; padding: 10px 0; border-bottom: 2px solid #282828; }
-            .nav-links.active { display: flex; }
-            .nav-links li { text-align: center; margin: 15px 0; }
+        .navbar {
+            background: #1a1a1a;
+            padding: 12px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #282828;
+            position: sticky;
+            top: 0;
+            z-index: 1101;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #00ffcc;
+        }
+
+        .logo-text {
+            font-size: 20px;
+            font-weight: bold;
+            color: #00ffcc;
+            letter-spacing: 1px;
+        }
+
+        /* HAMBURGER BUTTON */
+
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 44px;
+            height: 44px;
+            padding: 8px;
+            cursor: pointer;
+            background: transparent;
+            border: 1px solid #333;
+            border-radius: 10px;
+            position: relative;
+            z-index: 1102;
+            flex-shrink: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 3px;
+            background: #00ffcc;
+            border-radius: 3px;
+            transition: transform 0.35s ease,
+                        opacity 0.25s ease;
+            transform-origin: center;
+        }
+
+        /* THREE LINES TO CROSS */
+
+        .hamburger.active span:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+        /* BACKDROP */
+
+        .drawer-backdrop {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.65);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            z-index: 1098;
+            transition: opacity 0.35s ease,
+                        visibility 0.35s ease;
+        }
+
+        .drawer-backdrop.active {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        /* NAVIGATION DRAWER */
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+
+            position: fixed;
+            top: 78px;
+            right: 16px;
+            left: auto;
+
+            width: min(280px, calc(100vw - 32px));
+            padding: 16px;
+
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 16px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.45);
+
+            transform: translate(12px, -12px) scale(0.08);
+            transform-origin: top right;
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+
+            z-index: 1100;
+
+            transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1),
+                        opacity 0.3s ease,
+                        visibility 0.4s ease;
+        }
+
+        .nav-links.active {
+            transform: translate(0, 0) scale(1);
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+        }
+
+        .nav-links.is-closing {
+            transform: translate(12px, -12px) scale(0.08);
+            opacity: 0;
+            visibility: visible;
+            pointer-events: none;
+        }
+
+        .nav-links li {
+            margin: 0;
+            text-align: left;
+        }
+
+        .nav-links li a {
+            display: block;
+            padding: 12px 14px;
+            border-radius: 9px;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            transition: background 0.25s ease,
+                        color 0.25s ease;
+        }
+
+        .nav-links li a:hover,
+        .nav-links li a:focus {
+            color: #00ffcc;
+            background: #252525;
+        }
+
+        /* MAIN CONTENT */
+
+        main {
+            flex-grow: 1;
+            padding: 40px 20px;
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: #00ffcc;
+        }
+
+        .page-header p {
+            color: #aaaaaa;
+        }
+
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .about-text h2 {
+            color: #00ffcc;
+            margin-bottom: 15px;
+        }
+
+        .about-text p {
+            color: #aaaaaa;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 280px;
+            text-align: center;
+        }
+
+        .about-image img {
+            width: 100%;
+            max-width: 400px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 255, 204, 0.1);
+        }
+
+        /* FOOTER */
+
+        .footer {
+            background: #1a1a1a;
+            border-top: 2px solid #282828;
+            padding: 40px 20px 15px;
+            margin-top: 40px;
+        }
+
+        .footer-container {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 220px;
+        }
+
+        .footer-col h3 {
+            color: #ffffff;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            position: relative;
+            padding-bottom: 8px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: #00ffcc;
+        }
+
+        .footer-col p,
+        .footer-col ul li a {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.3s;
+        }
+
+        .footer-col p {
+            margin-bottom: 8px;
+            overflow-wrap: anywhere;
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a:hover {
+            color: #00ffcc;
+            padding-left: 5px;
+        }
+
+        .footer-legal {
+            max-width: 1000px;
+            margin: 28px auto 0;
+            padding-top: 22px;
+            border-top: 1px solid #333;
+        }
+
+        .footer-legal h3 {
+            color: #ffffff;
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+        }
+
+        .footer-legal-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px 20px;
+        }
+
+        .footer-legal-links a {
+            color: #aaaaaa;
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.25s ease;
+        }
+
+        .footer-legal-links a:hover {
+            color: #00ffcc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 15px;
+            border-top: 1px solid #333;
+            color: #777777;
+            font-size: 13px;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 480px) {
+            .navbar {
+                padding: 10px 15px;
+            }
+
+            .logo-img {
+                width: 40px;
+                height: 40px;
+            }
+
+            .logo-text {
+                font-size: 18px;
+            }
+
+            main {
+                padding: 30px 15px;
+            }
+
+            .page-header h1 {
+                font-size: 2rem;
+            }
+
+            .about-text,
+            .about-image {
+                min-width: 100%;
+            }
+
+            .footer-col {
+                min-width: 100%;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .hamburger span,
+            .nav-links,
+            .drawer-backdrop {
+                transition-duration: 0.01ms;
+            }
         }
     </style>
 </head>
+
 <body>
-    <nav class="navbar">
+
+    <!-- NAVBAR -->
+    <nav class="navbar" aria-label="Main navigation">
+
         <a href="index.html" class="logo-container">
-            <img src="logo.png" alt="Laymex Logo" class="logo-img"
-                 onerror="this.src='https://via.placeholder.com/45/00ffcc/000000?text=L'">
+            <img
+                src="logo.png"
+                alt="Laymex Logo"
+                class="logo-img"
+                onerror="this.onerror=null;this.src='https://via.placeholder.com/45/00ffcc/000000?text=L';">
+
             <span class="logo-text">LAYMEX</span>
         </a>
 
-        <button class="hamburger" id="menu-toggle" aria-label="Toggle navigation">
-            <span></span><span></span><span></span>
+        <!-- Hamburger Button -->
+        <button
+            class="hamburger"
+            id="menu-toggle"
+            type="button"
+            aria-label="Open menu"
+            aria-expanded="false"
+            aria-controls="nav-list">
+
+            <span></span>
+            <span></span>
+            <span></span>
         </button>
 
-        <ul class="nav-links" id="nav-list">
-            <li><a href="index.html">Home</a></li>
-            <li><a style="color:#00ffcc;" href="about.html">About Us</a></li>
-            <li><a href="services.html">Services</a></li>
-            <li><a href="contact.html">Contact</a></li>
+        <!-- Drawer Backdrop -->
+        <div
+            class="drawer-backdrop"
+            id="drawerBackdrop">
+        </div>
+
+        <!-- Drawer: Only 4 Sections -->
+        <ul
+            class="nav-links"
+            id="nav-list"
+            aria-hidden="true"
+            inert>
+
+            <li>
+                <a href="index.html">Home</a>
+            </li>
+
+            <li>
+                <a href="about.html"
+                   aria-current="page"
+                   style="color:#00ffcc;">About Us</a>
+            </li>
+
+            <li>
+                <a href="services.html">Our Services</a>
+            </li>
+
+            <li>
+                <a href="contact.html">Contact Us</a>
+            </li>
+
         </ul>
     </nav>
 
+    <!-- MAIN CONTENT -->
     <main>
+
         <div class="page-header">
             <h1>About Us</h1>
-            <p style="color: #aaaaaa;">Who we are and what we do.</p>
+            <p>Who we are and what we do.</p>
         </div>
 
         <div class="about-content">
+
             <div class="about-text">
                 <h2>Welcome to Laymex</h2>
-                <br>
-                <p>Laymex is focused on delivering high-quality digital solutions. From intuitive user interfaces to reliable digital experiences, we aim to build products that matter.</p>
-                <p>Our goal is to bring creative ideas to life through useful products, thoughtful design, and innovative technology.</p>
+
+                <p>
+                    Laymex is focused on delivering high-quality digital
+                    solutions. From intuitive user interfaces to reliable
+                    digital experiences, we aim to build products that matter.
+                </p>
+
+                <p>
+                    Our goal is to bring creative ideas to life through useful
+                    products, thoughtful design, and innovative technology.
+                </p>
             </div>
 
             <div class="about-image">
-                <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80"
-                     alt="The Laymex team working together">
+                <img
+                    src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80"
+                    alt="The Laymex team working together"
+                    loading="lazy">
             </div>
+
         </div>
     </main>
 
+    <!-- FOOTER -->
     <footer class="footer">
+
         <div class="footer-container">
+
             <div class="footer-col">
                 <h3>About Laymex</h3>
-                <p>Dedicated to creating useful products, thoughtful designs, and innovative digital experiences.</p>
+                <p>
+                    Dedicated to creating useful products, thoughtful designs,
+                    and innovative digital experiences.
+                </p>
             </div>
 
             <div class="footer-col">
@@ -132,21 +554,115 @@
 
             <div class="footer-col">
                 <h3>Contact Info</h3>
-                <p>📧 info@dantanisgroup.online</p>
+                <p>
+                    📧 <a href="mailto:info@laymex.com"
+                    style="color:#aaaaaa;text-decoration:none;">
+                    info@laymex.com</a>
+                </p>
                 <p>📞 +91 12345 67890</p>
                 <p>📍 India</p>
             </div>
+
+        </div>
+
+        <!-- LEGAL POLICIES: FOOTER ONLY -->
+        <div class="footer-legal">
+
+            <h3>Legal &amp; Policies</h3>
+
+            <div class="footer-legal-links">
+                <a href="terms.html">Terms &amp; Conditions</a>
+                <a href="privacy.html">Privacy Policy</a>
+                <a href="refund.html">Refund Policy</a>
+                <a href="return.html">Return Policy</a>
+                <a href="shipping.html">Shipping Policy</a>
+            </div>
+
         </div>
 
         <div class="footer-bottom">
             &copy; 2026 Laymex. All Rights Reserved.
         </div>
+
     </footer>
 
+    <!-- DRAWER ANIMATION AND CONTROLS -->
     <script>
-        document.getElementById('menu-toggle').addEventListener('click', function() {
-            document.getElementById('nav-list').classList.toggle('active');
-        });
+        (function () {
+            var menuToggle = document.getElementById('menu-toggle');
+            var navList = document.getElementById('nav-list');
+            var backdrop = document.getElementById('drawerBackdrop');
+            var closeTimer = null;
+
+            if (!menuToggle || !navList || !backdrop) {
+                return;
+            }
+
+            function openMenu() {
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                    closeTimer = null;
+                }
+
+                navList.classList.remove('is-closing');
+                navList.classList.add('active');
+                backdrop.classList.add('active');
+                menuToggle.classList.add('active');
+
+                navList.removeAttribute('inert');
+                navList.setAttribute('aria-hidden', 'false');
+
+                menuToggle.setAttribute('aria-expanded', 'true');
+                menuToggle.setAttribute('aria-label', 'Close menu');
+            }
+
+            function closeMenu() {
+                if (!navList.classList.contains('active')) {
+                    return;
+                }
+
+                navList.classList.remove('active');
+                navList.classList.add('is-closing');
+                backdrop.classList.remove('active');
+                menuToggle.classList.remove('active');
+
+                navList.setAttribute('aria-hidden', 'true');
+                navList.setAttribute('inert', '');
+
+                menuToggle.setAttribute('aria-expanded', 'false');
+                menuToggle.setAttribute('aria-label', 'Open menu');
+
+                if (closeTimer) {
+                    clearTimeout(closeTimer);
+                }
+
+                closeTimer = setTimeout(function () {
+                    navList.classList.remove('is-closing');
+                    closeTimer = null;
+                }, 420);
+            }
+
+            menuToggle.addEventListener('click', function () {
+                if (navList.classList.contains('active')) {
+                    closeMenu();
+                } else {
+                    openMenu();
+                }
+            });
+
+            backdrop.addEventListener('click', closeMenu);
+
+            navList.querySelectorAll('a').forEach(function (link) {
+                link.addEventListener('click', closeMenu);
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape') {
+                    closeMenu();
+                }
+            });
+        })();
     </script>
+
 </body>
 </html>
